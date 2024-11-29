@@ -6,6 +6,7 @@ import { DetallesProductoPageComponent } from './pages/detalles-producto/detalle
 import { CarritoPageComponent } from './pages/carrito/carrito.component';
 import { FavoritosPageComponent } from './pages/favoritos/favoritos.component';
 import { PerfilPageComponent } from '../shared/home/pages/perfil/perfil.component';
+import { ResumenCompraPageComponent } from './pages/resumen-compra-page/resumen-compra-page.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,8 @@ const routes: Routes = [
       },
       { path: 'carrito', component: CarritoPageComponent },
       // { path: 'resumen-compra/:ordenId', component: ResumenCompraPageComponent },
+
+      { path: 'resumen-compra/:ordenId', component: ResumenCompraPageComponent }, // Ruta para resumen de compra
       { path: 'favoritos', component: FavoritosPageComponent },
       { path: 'perfil', component: PerfilPageComponent },
       { path: '**', redirectTo: 'ver-catalogo'}

@@ -19,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ResumenCompraPageComponent } from './pages/resumen-compra-page/resumen-compra-page.component';
 
 @NgModule({
   imports: [
@@ -43,6 +44,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     VerCatalogoPageComponent,
     PerfilCustomerComponent,
     DetallesProductoPageComponent,
+    ResumenCompraPageComponent,
+    ResumenCompraPageComponent
   ],
   providers: [],
 })

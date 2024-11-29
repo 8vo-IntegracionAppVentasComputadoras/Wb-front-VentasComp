@@ -1,0 +1,14 @@
+.form-info{
+  margin-top: 4px;
+  border: 1px solid rgb(226, 226, 226);
+  border-radius: 10px;
+
+}
+
+.btn-pagar {
+  width: 100%;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
