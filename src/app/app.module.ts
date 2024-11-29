@@ -10,6 +10,13 @@ import { HomePageComponent } from './shared/home/pages/home-page/home-page.compo
 import { NavbarComponent } from './shared/home/components/navbar/navbar.component';
 import { FooterComponent } from './shared/home/components/footer/footer.component';
 
+// Angular Material Modules
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -17,7 +24,6 @@ import { FooterComponent } from './shared/home/components/footer/footer.componen
     FooterComponent,
     HomePageComponent,
     NavbarComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -26,6 +32,13 @@ import { FooterComponent } from './shared/home/components/footer/footer.componen
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+
+    // Angular Material Modules
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatSidenavModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

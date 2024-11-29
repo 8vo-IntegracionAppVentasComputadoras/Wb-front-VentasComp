@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { MatSlider } from '@angular/material/slider';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -60,11 +62,26 @@ export class NavbarComponent implements OnInit {
     }, 0);
   }
 
+  goHome(){
+
+    if(this.isUser)
+      this.router.navigateByUrl('user/ver-catalogo')
+      return
+    this.router.navigateByUrl('home')
+  }
+
   navigateAndScroll(section: string): void {
+
     if (this.router.url === '/home') {
       this.scrollToSection(section);
     } else {
       this.router.navigate(['/home'], { fragment: section });
     }
+  }
+
+  @ViewChild('drawer') drawer!: MatSidenav; // Referencia al Sidenav
+
+  toggleDrawer() {
+    this.drawer.toggle(); // Alterna entre abrir/cerrar el Sidenav
   }
 }

@@ -1,7 +1,11 @@
 <nav class="navbar navbar-expand-md bg-primary py-3">
   <div class="container">
-    <a class="navbar-brand d-flex align-items-center" (click)="navigateAndScroll('Presentacion')">
-      <span class="fw-bolder" style="padding-left: 20px;">VentaComputadoras</span>
+    <a class="navbar-brand d-flex align-items-center" (click)="goHome()">
+      <button class="btn">
+        <i class="bi bi-cart fs-3"></i>
+        <span class="fw-bolder fs-4" style="padding-left: 20px;">VentaComputadoras</span>
+      </button>
+
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navcol-2" aria-controls="navcol-2" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,21 +13,22 @@
     <div class="collapse navbar-collapse justify-content-center" id="navcol-2">
       <ul class="navbar-nav" *ngIf="!isLoggedIn">
         <li class="nav-item">
-          <a class="nav-link text-white" (click)="navigateAndScroll('Presentacion')">Inicio</a>
+          <button class="nav-link text-black fw-medium" (click)="navigateAndScroll('Presentacion')">INICIO</button>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" (click)="navigateAndScroll('productos')">Productos</a>
+          <button class="nav-link text-black fw-medium" (click)="navigateAndScroll('productos')">PRODUCTOS</button>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" (click)="navigateAndScroll('features')">Características</a>
+          <button class="nav-link text-black fw-medium" (click)="navigateAndScroll('features')">CARACTERÍSTICAS</button>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" (click)="navigateAndScroll('testimonials')">Testimonios</a>
+          <button class="nav-link text-black fw-medium" (click)="navigateAndScroll('testimonials')">TESTIMONIOS</button>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" (click)="navigateAndScroll('ofertas')">Ofertas</a>
+          <button class="nav-link text-black fw-medium" (click)="navigateAndScroll('ofertas')">OFERTAS</button>
         </li>
       </ul>
+
     </div>
     <div class="d-flex">
       <!-- Botones solo visibles para el admin -->
@@ -40,22 +45,22 @@
       </div>
       <!-- Mostrar nombre del usuario -->
       <div class="d-flex align-items-center me-3" *ngIf="isLoggedIn">
-        <span class="navbar-text text-light me-2">Hola,</span>
-        <span class="fw-bold text-light">{{ userName }}</span>
+        <span class="navbar-text text-dark fw-medium me-2">Hola,</span>
+        <span class="fw-bold text-dark ">{{ userName }}</span>
       </div>
       <!-- Dropdown de perfil y logout -->
       <div class="nav-item dropdown" *ngIf="isLoggedIn">
-        <a class="nav-link dropdown-toggle text-light d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="bi bi-person-circle fs-4"></i>
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-person-fill fs-3 my-2"></i>
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-          <li><button class="dropdown-item" (click)="navigateToProfile()"><i class="bi bi-person me-2"></i>Mi Perfil</button></li>
-          <li><button class="dropdown-item" (click)="logout()">Cerrar Sesión</button></li>
+          <li><button class="dropdown-item" (click)="navigateToProfile()"> <i class="bi bi-person mx-2"></i>Mi Perfil</button></li>
+          <li><button class="dropdown-item" (click)="logout()"> <i class="bi bi-box-arrow-right mx-2"></i> Cerrar Sesión</button></li>
         </ul>
       </div>
       <!-- Botón de sign up si no está logueado -->
       <div *ngIf="!isLoggedIn">
-        <button class="btn btn-success" routerLink="auth/login-registro">Ingresa aquí</button>
+        <button class="btn btn-login" routerLink="auth/login-registro">Ingresa aquí</button>
       </div>
     </div>
   </div>

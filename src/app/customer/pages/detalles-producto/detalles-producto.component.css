@@ -41,7 +41,7 @@
 .image-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+
     overflow: hidden;
     max-height: 300px;
 }
@@ -136,4 +136,18 @@ ul.specs li {
 .text-center.mt-5 p {
     font-size: 18px;
     color: #6c757d;
+}
+.image-container {
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  height: 300px; /* Altura fija para mantener consistencia */
+  overflow: hidden; /* Oculta el contenido que se desborda */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container img {
+  width: 100%; /* Ajusta la imagen al ancho del contenedor */
+  height: 100%; /* Ajusta la imagen al alto del contenedor */
+  object-fit: contain; /* La imagen se ajusta completamente sin recortarse */
 }

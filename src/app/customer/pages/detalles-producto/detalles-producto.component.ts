@@ -13,7 +13,7 @@ import { OrdenService } from 'src/app/services/orden.service'; // Importar Orden
 @Component({
   selector: 'app-detalles-productoo',
   templateUrl: './detalles-producto.component.html',
-  styleUrls: ['./detalles-producto.component.css']
+  styleUrls: ['./detalles-producto.component.css'],
 })
 export class DetallesProductoPageComponent implements OnInit {
   producto: Producto = {
@@ -35,12 +35,12 @@ export class DetallesProductoPageComponent implements OnInit {
     private comentarioService: ComentarioService,
     private ordenService: OrdenService, // Inyectar OrdenService
     private location: Location
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.usuarioId = this.authService.getUsuarioId();
     console.log('Usuario autenticado ID:', this.usuarioId);
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       const id = +params['id'];
       this.cargarDetallesProducto(id);
       this.cargarComentarios(id);
@@ -49,8 +49,8 @@ export class DetallesProductoPageComponent implements OnInit {
 
   cargarDetallesProducto(id: number) {
     this.productoService.obtenerDetallesDelProducto(id).subscribe({
-      next: (producto) => this.producto = producto,
-      error: (error) => console.error('Error al cargar el producto:', error)
+      next: (producto) => (this.producto = producto),
+      error: (error) => console.error('Error al cargar el producto:', error),
     });
   }
 
@@ -60,7 +60,8 @@ export class DetallesProductoPageComponent implements OnInit {
         this.comentarios = comentarios.reverse(); // Invertir el orden de los comentarios
         console.log('Comentarios cargados:', this.comentarios);
       },
-      error: (error) => console.error('Error al cargar los comentarios:', error)
+      error: (error) =>
+        console.error('Error al cargar los comentarios:', error),
     });
   }
 
@@ -70,17 +71,20 @@ export class DetallesProductoPageComponent implements OnInit {
     const comentario: Comentario = {
       contenido: this.nuevoComentario,
       usuarioId: this.usuarioId!,
-      productoId: this.producto.id!
+      productoId: this.producto.id!,
     };
 
-    this.comentarioService.agregarComentario(comentario, this.producto.id!).subscribe({
-      next: (comentario) => {
-        this.comentarios.unshift(comentario); // Agregar el nuevo comentario al principio de la lista
-        this.nuevoComentario = '';
-        console.log('Comentario agregado:', comentario);
-      },
-      error: (error) => console.error('Error al agregar el comentario:', error)
-    });
+    this.comentarioService
+      .agregarComentario(comentario, this.producto.id!)
+      .subscribe({
+        next: (comentario) => {
+          this.comentarios.unshift(comentario); // Agregar el nuevo comentario al principio de la lista
+          this.nuevoComentario = '';
+          console.log('Comentario agregado:', comentario);
+        },
+        error: (error) =>
+          console.error('Error al agregar el comentario:', error),
+      });
   }
 
   editarComentario(comentario: Comentario) {
@@ -91,17 +95,27 @@ export class DetallesProductoPageComponent implements OnInit {
   guardarComentarioEditado() {
     if (this.editandoComentario) {
       const contenido = this.editandoComentario.contenido;
-      this.comentarioService.editarComentario(this.editandoComentario.id!, this.usuarioId!, contenido).subscribe({
-        next: (comentarioActualizado) => {
-          const index = this.comentarios.findIndex(c => c.id === comentarioActualizado.id);
-          if (index !== -1) {
-            this.comentarios[index].contenido = comentarioActualizado.contenido;
-          }
-          this.editandoComentario = null;
-          console.log('Comentario editado:', comentarioActualizado);
-        },
-        error: (error) => console.error('Error al editar el comentario:', error)
-      });
+      this.comentarioService
+        .editarComentario(
+          this.editandoComentario.id!,
+          this.usuarioId!,
+          contenido
+        )
+        .subscribe({
+          next: (comentarioActualizado) => {
+            const index = this.comentarios.findIndex(
+              (c) => c.id === comentarioActualizado.id
+            );
+            if (index !== -1) {
+              this.comentarios[index].contenido =
+                comentarioActualizado.contenido;
+            }
+            this.editandoComentario = null;
+            console.log('Comentario editado:', comentarioActualizado);
+          },
+          error: (error) =>
+            console.error('Error al editar el comentario:', error),
+        });
     }
   }
 
@@ -113,11 +127,11 @@ export class DetallesProductoPageComponent implements OnInit {
   confirmarEliminarComentario(id: number) {
     Swal.fire({
       title: '¿Estás seguro?',
-      text: "No podrás revertir esto",
+      text: 'No podrás revertir esto',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'Cancelar'
+      cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
         this.eliminarComentario(id);
@@ -128,17 +142,20 @@ export class DetallesProductoPageComponent implements OnInit {
   eliminarComentario(id: number) {
     this.comentarioService.eliminarComentario(id, this.usuarioId!).subscribe({
       next: () => {
-        this.comentarios = this.comentarios.filter(c => c.id !== id);
+        this.comentarios = this.comentarios.filter((c) => c.id !== id);
         Swal.fire('Eliminado', 'El comentario ha sido eliminado', 'success');
         console.log('Comentario eliminado:', id);
       },
-      error: (error) => console.error('Error al eliminar el comentario:', error)
+      error: (error) =>
+        console.error('Error al eliminar el comentario:', error),
     });
   }
 
   isOwner(usuarioId: number): boolean {
     const isOwner = this.usuarioId === usuarioId;
-    console.log(`Verificando propiedad del comentario: ${usuarioId} con usuario autenticado: ${this.usuarioId} - Resultado: ${isOwner}`);
+    console.log(
+      `Verificando propiedad del comentario: ${usuarioId} con usuario autenticado: ${this.usuarioId} - Resultado: ${isOwner}`
+    );
     return isOwner;
   }
 
@@ -160,33 +177,50 @@ export class DetallesProductoPageComponent implements OnInit {
       return;
     }
 
-    this.ordenService.agregarProductoAlCarrito(this.usuarioId, productoId).subscribe({
-      next: (respuesta) => {
-        Swal.fire({
-          title: '¡Éxito!',
-          text: 'Producto añadido al carrito exitosamente.',
-          icon: 'success',
-          confirmButtonText: 'Ok'
-        });
-      },
-      error: (error) => {
-        if (error.status === 409) {
+    this.ordenService
+      .agregarProductoAlCarrito(this.usuarioId, productoId)
+      .subscribe({
+        next: (respuesta) => {
           Swal.fire({
-            title: '¡Conflicto!',
-            text: 'El producto ya está en el carrito.',
-            icon: 'warning',
-            confirmButtonText: 'Entendido'
+            title: '¡Éxito!',
+            text: 'Producto añadido al carrito exitosamente.',
+            icon: 'success',
+            confirmButtonText: 'Ok',
           });
-        } else {
-          Swal.fire({
-            title: 'Error',
-            text: 'Error al agregar al carrito: ' + error.message,
-            icon: 'error',
-            confirmButtonText: 'Cerrar'
-          });
-          console.error('Error al agregar producto al carrito:', error);
-        }
-      }
-    });
+        },
+        error: (error) => {
+          if (error.status === 409) {
+            Swal.fire({
+              title: '¡Conflicto!',
+              text: 'El producto ya está en el carrito.',
+              icon: 'warning',
+              confirmButtonText: 'Entendido',
+            });
+          } else {
+            Swal.fire({
+              title: 'Error',
+              text: 'Error al agregar al carrito: ' + error.message,
+              icon: 'error',
+              confirmButtonText: 'Cerrar',
+            });
+            console.error('Error al agregar producto al carrito:', error);
+          }
+        },
+      });
+  }
+  limpiarBase64(imagen: string): string {
+    if (!imagen) {
+      ; // Ruta a una imagen por defecto si la imagen no existe
+    }
+
+    // Regex para verificar si la imagen ya tiene el prefijo correcto
+    const base64Regex = /^data:image\/(jpeg|png|gif|bmp|webp);base64,/;
+
+    if (base64Regex.test(imagen)) {
+      return imagen; // La imagen ya está en el formato correcto
+    }
+
+    // Si el prefijo falta o es incorrecto, añadimos uno por defecto
+    return `data:image/jpeg;base64,${imagen}`;
   }
 }

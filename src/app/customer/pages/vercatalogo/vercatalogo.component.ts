@@ -23,11 +23,7 @@ export class VerCatalogoPageComponent implements OnInit {
   procesadorBusqueda: string = '';
   tarjetaGraficaBusqueda: string = '';
   precioMin: number | null = 0;
-  precioMax: number | null = 10000;
   enStock: boolean = false;
-  rams: string[] = ['8GB', '16GB', '32GB'];
-  procesadores: string[] = ['Intel', 'AMD'];
-  tarjetasGraficas: string[] = ['NVIDIA', 'AMD'];
 
   constructor(
     private router: Router,
@@ -45,6 +41,7 @@ export class VerCatalogoPageComponent implements OnInit {
   cargarProductos(): void {
     this.productoService.obtenerCatalogoCompleto().subscribe({
       next: (productos) => {
+        console.log('Productos recibidos:', productos);
         this.productos = this.filteredProductos = productos;
         this.filtrarProductos();
       },
@@ -53,6 +50,7 @@ export class VerCatalogoPageComponent implements OnInit {
       }
     });
   }
+
 
   cargarFavoritos(): void {
     const usuarioId = this.authService.getUsuarioId();
@@ -202,25 +200,37 @@ export class VerCatalogoPageComponent implements OnInit {
     this.filtrarProductos();
   }
 
-  onFiltroChange(): void {
-    this.filtrarProductos();
-  }
-
   private filtrarProductos(): void {
     this.filteredProductos = this.productos.filter(producto => {
       const cumpleRam = this.ramBusqueda === '' || producto.especificacionesDisponibles?.some(e => e.nombre.toLowerCase().includes(this.ramBusqueda.toLowerCase()));
       const cumpleProcesador = this.procesadorBusqueda === '' || producto.especificacionesDisponibles?.some(e => e.nombre.toLowerCase().includes(this.procesadorBusqueda.toLowerCase()));
       const cumpleTarjetaGrafica = this.tarjetaGraficaBusqueda === '' || producto.especificacionesDisponibles?.some(e => e.nombre.toLowerCase().includes(this.tarjetaGraficaBusqueda.toLowerCase()));
       const cumplePrecioMin = this.precioMin === null || producto.precio >= this.precioMin;
-      const cumplePrecioMax = this.precioMax === null || producto.precio <= this.precioMax;
       const cumpleStock = !this.enStock || (this.enStock && producto.stock > 0);
       const cumpleBusqueda = this.searchQuery === '' || producto.nombre.toLowerCase().includes(this.searchQuery.toLowerCase()) || producto.descripcion?.toLowerCase().includes(this.searchQuery.toLowerCase());
 
-      return cumpleRam && cumpleProcesador && cumpleTarjetaGrafica && cumplePrecioMin && cumplePrecioMax && cumpleStock && cumpleBusqueda;
+      return cumpleRam && cumpleProcesador && cumpleTarjetaGrafica && cumplePrecioMin && cumpleStock && cumpleBusqueda;
     });
+
   }
 
   verDetalles(productoId: number): void {
     this.router.navigate(['/user/producto-detallesuser', productoId]);
   }
+
+  limpiarBase64(imagen: string): string {
+    if (!imagen) {
+      return 'assets/placeholder-image.png'; // Imagen por defecto si no hay datos
+    }
+
+    // Eliminar prefijos redundantes
+    const base64Regex = /^data:image\/(jpeg|png|gif|bmp|webp);base64,/;
+    if (base64Regex.test(imagen)) {
+      return imagen; // Si ya tiene el formato correcto
+    }
+
+    // Si el prefijo falta, lo añadimos
+    return `data:image/jpeg;base64,${imagen}`;
+  }
+
 }

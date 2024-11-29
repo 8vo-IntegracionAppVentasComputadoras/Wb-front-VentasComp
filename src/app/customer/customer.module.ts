@@ -11,16 +11,38 @@ import { SharedModule } from '../shared/shared.module';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { DetallesProductoPageComponent } from './pages/detalles-producto/detalles-producto.component';
 
+// Angular Material Modules
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
-  imports: [RouterModule, CommonModule, FormsModule, CustomerRoutingModule, SharedModule],
-  exports: [],
+  imports: [
+    RouterModule,
+    CommonModule,
+    FormsModule,
+    CustomerRoutingModule,
+    SharedModule,
+    // Angular Material Modules (deben estar en imports)
+    MatCardModule,
+    MatGridListModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSnackBarModule
+  ],
   declarations: [
     CustomerLayoutPageComponent,
     CarritoPageComponent,
     OrdenesPageComponent,
     VerCatalogoPageComponent,
     PerfilCustomerComponent,
-    DetallesProductoPageComponent
+    DetallesProductoPageComponent,
   ],
   providers: [],
 })

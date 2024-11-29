@@ -10,3 +10,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+  --color-primary: #3F51B5; /* Azul profesional */
+  --color-secondary: #FFCA28; /* Amarillo vibrante */
+  --color-background: #F5F5F5; /* Fondo neutro */
+  --color-text-primary: #212121; /* Texto principal */
+  --color-text-secondary: #757575; /* Texto secundario */
+}

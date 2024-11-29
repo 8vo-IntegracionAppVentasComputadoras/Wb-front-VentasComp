@@ -1,3 +1,3 @@
-let baserUrl = 'http://localhost:8080'
+let baserUrl = 'https://ventacomputadoras.fly.dev'
 export default baserUrl;
 //hgfhf

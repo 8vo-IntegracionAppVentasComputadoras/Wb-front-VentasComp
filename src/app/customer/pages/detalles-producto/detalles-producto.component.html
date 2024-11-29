@@ -11,22 +11,17 @@
   <div class="row">
     <div class="col-lg-6 mb-3">
       <div class="image-container">
-        <img [src]="producto.imagen" alt="{{ producto.nombre }}" class="img-fluid rounded shadow">
+        <img [src]="limpiarBase64(producto.imagen)" alt="Imagen del Producto">
       </div>
+
+
     </div>
     <div class="col-lg-6">
       <div class="product-details">
-        <p class="description"><strong>Descripción:</strong> {{ producto.descripcion }}</p>
+
         <p class="price"><strong>Precio:</strong> ${{ producto.precio }}</p>
         <p class="stock"><strong>Stock:</strong> {{ producto.stock }}</p>
-        <div *ngIf="producto.especificacionesDisponibles && producto.especificacionesDisponibles.length">
-          <h4>Especificaciones:</h4>
-          <ul class="list-unstyled specs">
-            <li *ngFor="let espec of producto.especificacionesDisponibles">
-              {{ espec.nombre }} (+${{ espec.precioAdicional }})
-            </li>
-          </ul>
-        </div>
+        <p class="description"><strong>Descripción:</strong> {{ producto.descripcion }}</p>
         <button class="btn btn-primary mt-3" (click)="agregarAlCarrito(producto.id!)">Añadir al Carrito</button>
       </div>
     </div>

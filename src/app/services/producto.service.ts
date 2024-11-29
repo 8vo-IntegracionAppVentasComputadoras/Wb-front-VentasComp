@@ -24,11 +24,11 @@ export class ProductoService {
   }
 
   obtenerCatalogoCompleto(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(`${baserUrl}/productos/catalogo`);
+    return this.http.get<Producto[]>(`${baserUrl}/api/productos/listar`);
   }
 
   obtenerDetallesDelProducto(id: number): Observable<Producto> {
-    return this.http.get<Producto>(`${baserUrl}/productos/${id}/detalles`);
+    return this.http.get<Producto>(`${baserUrl}/api/productos/${id}/detalles`);
   }
 
   actualizarEspecificaciones(id: number, especificaciones: Set<number>): Observable<Producto> {
