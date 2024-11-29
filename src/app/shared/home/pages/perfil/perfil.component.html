@@ -1,61 +1,148 @@
-<div class="container my-5">
+<div *ngIf="usuario; else loading" class="container my-5">
   <div class="card p-4">
-      <div class="row">
-          <div class="col-md-4 text-center mb-4 mb-md-0">
-              <img src="../../../../../assets/person1.jpeg" alt="Perfil de Usuario" class="img-fluid rounded-circle profile-img">
-              <button class="btn btn-danger w-100" (click)="eliminarCuenta()">Eliminar Cuenta</button>
-          </div>
-          <div class="col-md-8">
-              <div class="profile-header">
-                  <i class="bi bi-person-circle profile-icon"></i>
-                  <h3 class="profile-title">Perfil de Usuario</h3>
-              </div>
-              <div *ngIf="!editable; else editForm">
-                  <div class="profile-info">
-                      <p><strong>Nombres:</strong> {{ usuario.nombre }}</p>
-                      <p><strong>Apellidos:</strong> {{ usuario.apellido }}</p>
-                      <p><strong>DNI:</strong> {{ usuario.dni }}</p>
-                      <p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
-                      <p><strong>Username:</strong> {{ usuario.username }}</p>
-                      <p><strong>Correo:</strong> {{ usuario.correo }}</p>
-                  </div>
-                  <div class="text-center mt-3">
-                      <button type="button" class="btn btn-secondary" (click)="habilitarEdicion()">Editar Perfil</button>
-                  </div>
-              </div>
-              <ng-template #editForm>
-                  <form class="row g-3">
-                      <div class="col-md-6">
-                          <label for="nombre" class="form-label">Nombres</label>
-                          <input type="text" class="form-control" id="nombre" [(ngModel)]="usuario.nombre" name="nombre">
-                      </div>
-                      <div class="col-md-6">
-                          <label for="apellido" class="form-label">Apellidos</label>
-                          <input type="text" class="form-control" id="apellido" [(ngModel)]="usuario.apellido" name="apellido">
-                      </div>
-                      <div class="col-md-6">
-                          <label for="dni" class="form-label">DNI</label>
-                          <input type="text" class="form-control" id="dni" [(ngModel)]="usuario.dni" name="dni">
-                      </div>
-                      <div class="col-md-6">
-                          <label for="telefono" class="form-label">Teléfono</label>
-                          <input type="text" class="form-control" id="telefono" [(ngModel)]="usuario.telefono" name="telefono">
-                      </div>
-                      <div class="col-md-6">
-                          <label for="username" class="form-label">Username</label>
-                          <input type="text" class="form-control" id="username" [(ngModel)]="usuario.username" name="username">
-                      </div>
-                      <div class="col-md-6">
-                          <label for="correo" class="form-label">Correo</label>
-                          <input type="email" class="form-control" id="correo" [(ngModel)]="usuario.correo" name="correo">
-                      </div>
-                      <div class="col-12 d-flex justify-content-center">
-                          <button type="button" class="btn btn-primary me-2" (click)="guardarCambios()">Guardar Cambios</button>
-                          <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()">Cancelar</button>
-                      </div>
-                  </form>
-              </ng-template>
-          </div>
+    <div class="row">
+      <!-- Primera fila: botones de Editar y Eliminar -->
+      <div class="col-12 text-end">
+        <button class="btn-editar" (click)="habilitarEdicion()">
+          Editar Perfil
+        </button>
+        <button class="btn-eliminar" (click)="eliminarCuenta()">
+          Eliminar Cuenta
+        </button>
       </div>
+    </div>
+
+    <div class="row mt-4">
+      <!-- Primera columna: Foto y Nombre completo -->
+      <div class="col-md-4">
+        <div class="text-center">
+          <img
+            src="../../../../../assets/person1.jpeg"
+            alt="Perfil de Usuario"
+            class="img-fluid rounded-circle profile-img mb-3"
+          />
+          <h4 class="fw-bold">{{ usuario.nombre }} {{ usuario.apellido }}</h4>
+          <p class="text-muted fw-semibold">{{ usuario.username }}</p>
+        </div>
+      </div>
+
+      <!-- Segunda columna: Nombres, DNI y Correo -->
+      <div class="col-md-4">
+        <div class="profile-info">
+          <div *ngIf="!editable; else editForm">
+            <p class="label-user-info"><i class="bi bi-person"></i> Nombres</p>
+            <p class="user-info mb-4">{{ usuario.nombre }}</p>
+
+            <p class="label-user-info">
+              <i class="bi bi-person-vcard-fill"></i> DNI
+            </p>
+            <p class="user-info mb-4">{{ usuario.dni }}</p>
+
+            <p class="label-user-info"><i class="bi bi-envelope"></i> Correo</p>
+            <p class="user-info">{{ usuario.correo }}</p>
+          </div>
+
+          <!-- Formulario de edición -->
+          <ng-template #editForm>
+            <form class="row g-3">
+              <div class="col-md-6">
+                <label for="nombre" class="form-label">Nombres</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombre"
+                  [(ngModel)]="usuario.nombre"
+                  name="nombre"
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="dni" class="form-label">DNI</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="dni"
+                  [(ngModel)]="usuario.dni"
+                  name="dni"
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="correo" class="form-label">Correo</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="correo"
+                  [(ngModel)]="usuario.correo"
+                  name="correo"
+                />
+              </div>
+            </form>
+          </ng-template>
+        </div>
+      </div>
+
+      <!-- Tercera columna: Apellidos y Teléfono -->
+      <div class="col-md-4">
+        <div class="profile-info">
+          <div *ngIf="!editable; else editFormTelefonoApellido">
+            <p class="label-user-info"><i class="bi bi-person"></i> Apellidos</p>
+            <p class="user-info mb-4">{{ usuario.apellido }}</p>
+
+            <p class="label-user-info"><i class="bi bi-telephone"></i> Teléfono</p>
+            <p class="user-info">{{ usuario.telefono }}</p>
+          </div>
+
+          <!-- Formulario de edición -->
+          <ng-template #editFormTelefonoApellido>
+            <form class="row g-3">
+              <div class="col-md-6">
+                <label for="apellido" class="form-label">Apellidos</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="apellido"
+                  [(ngModel)]="usuario.apellido"
+                  name="apellido"
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="telefono"
+                  [(ngModel)]="usuario.telefono"
+                  name="telefono"
+                />
+              </div>
+            </form>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones de Guardar Cambios y Cancelar -->
+    <div *ngIf="editable" class="col-12 d-flex justify-content-center mt-4">
+      <button
+        type="button"
+        class="btn btn-primary me-2"
+        (click)="guardarCambios()"
+      >
+        Guardar Cambios
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="cancelarEdicion()"
+      >
+        Cancelar
+      </button>
+    </div>
   </div>
 </div>
+
+<!-- Template para mostrar mensaje de carga -->
+<ng-template #loading>
+  <div class="text-center mt-5">
+    <p>Cargando perfil...</p>
+  </div>
+</ng-template>

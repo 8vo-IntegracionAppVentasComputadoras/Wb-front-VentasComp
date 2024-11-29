@@ -1,81 +1,153 @@
+/* Ajustar la imagen del producto */
+.img-thumbnail {
+  border: 1px solid #ddd; /* Borde más delgado */
+  border-radius: 8px;
+  width: 80px; /* Aumento del tamaño de la imagen */
+  height: 80px;
+  object-fit: cover;
+  margin-right: 10px; /* Añadido para separarla un poco del texto */
+}
+
+/* Mejorar la alineación de los elementos en los productos */
+.d-flex {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Usar gap para separar los elementos de manera más controlada */
+}
+
+/* Estilo para los productos */
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+  padding: 10px 15px;
+  border: none;
+}
+
+/* Eliminar el espacio excesivo */
+.list-group-item .ms-2 {
+  margin-left: 0;
+}
+
+/* Estilo del nombre y precio del producto */
+.info-name {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 5px; /* Añadido un pequeño espacio para separar el nombre del precio */
+}
+
+.precio-info {
+  color: gray;
+  font-size: 13px;
+}
+
+/* Estilo de los botones */
+.btn-eliminar {
+  background-color: red;
+  border-radius: 10px;
+  border: transparent;
+  margin-left: 40px; /* Espacio pequeño entre la imagen y el botón */
+  margin-top: 0; /* Eliminar margen superior innecesario */
+  padding: 3px 5px;
+  color:white; /* Reducir padding para que el botón sea más compacto */
+}
+
+/* Ajuste del botón de ver productos */
+.btn-ver-productos {
+  background-color: transparent;
+  border: 1px solid rgb(134, 134, 134);
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+.btn-eliminar-orden {
+  background-color: red;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: 500;
+  color: white;
+  font-size: 12px;
+  margin-right: 2px;
+}
+
+.btn-realizar-pago {
+  background-color: black;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: 500;
+  color: white;
+  font-size: 12px;
+  margin-right: 2px;
+}
+
+.btn-descargar-comprobante {
+  background-color: transparent;
+  border: 1px solid rgb(134, 134, 134);
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 5px;
+}
+
+
+
+/* Alineación de los botones en las acciones */
+.table td .btn {
+  margin: 3px 5px; /* Reduce el espacio entre los botones en la tabla */
+}
+
+/* Modificaciones generales para las tablas */
+.table-responsive {
+  overflow-x: auto;
+}
+
 .table {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  }
-  
-  .table-hover tbody tr:hover {
-    background-color: #f8f9fa;
-  }
-  
-  .thead-dark th {
-    background-color: #343a40;
-    color: #fff;
-  }
-  
-  .btn-danger {
-    margin-right: 5px;
-  }
-  
-  .btn-success {
-    background-color: #28a745;
-    border-color: #28a745;
-  }
-  
-  .btn-success:hover {
-    background-color: #218838;
-    border-color: #1e7e34;
-  }
-  
-  .btn-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
-  }
-  
-  .btn-secondary:hover {
-    background-color: #5a6268;
-    border-color: #545b62;
-  }
-  
-  .modal-header {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .modal-footer {
-    justify-content: center;
-  }
-  
-  .form-group label {
-    font-weight: bold;
-  }
-  
-  .form-control {
-    border-radius: 0.25rem;
-  }
-  
-  .modal-dialog {
-    max-width: 500px;
-  }
-  
-  .modal-content {
-    border-radius: 0.5rem;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
-  }
-  
-  .text-danger {
-    color: #dc3545 !important;
-  }
-  input#tarjetaCredito {
-    letter-spacing: 2px; /* Espaciado entre los caracteres */
-  }
-  
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.thead th {
+  background-color: #f3f1f1;
+  font-weight: 400;
+  color: #414040;
+}
+
+.list-group-item button {
+  margin-top: 5px;
+}
+
+.btn-danger {
+  margin-right: 5px;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}

@@ -1,0 +1,113 @@
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.card {
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+}
+
+.profile-icon {
+  font-size: 2rem;
+  margin-right: 10px;
+}
+
+.profile-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.profile-info {
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+.profile-info p {
+  margin: 5px 0;
+}
+
+.text-end {
+  text-align: right;
+}
+
+.btn-editar{
+  background-color: transparent;
+  border-radius: 8px;
+  border:  1px solid rgb(163, 163, 163) ;
+  padding: 9px;
+  margin-right: 5px;
+}
+
+.btn-editar:hover{
+  background-color: rgba(245, 245, 245, 0.959);
+}
+
+.btn-eliminar:hover{
+  background-color: rgb(221, 66, 66);
+}
+
+.btn-eliminar{
+  border: none;
+  background-color: red;
+  border-radius: 8px;
+  padding: 10px;
+  color: white;
+}
+
+.profile-info strong {
+  font-weight: 600;
+}
+
+button {
+  width: auto;
+}
+
+button.ms-3 {
+  margin-left: 10px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.row.mt-4 {
+  margin-top: 30px;
+}
+
+.col-md-4 {
+  margin-bottom: 20px;
+}
+
+.label-user-info {
+  color: rgb(126, 126, 126);
+  font-size: 14px;
+}
+
+.user-info {
+  margin-top: 7px;
+  font-size: 16px;
+  font-weight: 500;
+
+}
+
+@media (max-width: 768px) {
+  .profile-img {
+    width: 120px;
+    height: 120px;
+  }
+  .profile-title {
+    font-size: 1.5rem;
+  }
+}

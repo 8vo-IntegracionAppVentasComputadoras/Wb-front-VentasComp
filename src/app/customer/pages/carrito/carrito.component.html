@@ -1,8 +1,9 @@
 <div *ngIf="ordenes.length > 0; else noData" class="container mt-2">
-  <h2 class="mb-4 text-center">Tus Órdenes</h2>
+  <h2 class="mb-2 text-start fw-semibold">Tus Órdenes</h2>
+  <p>Gestiona tus órdenes y realiza pagos de manera segura</p>
   <div class="table-responsive">
     <table class="table table-hover">
-      <thead class="thead-dark">
+      <thead class="thead">
         <tr>
           <th>#</th>
           <th>Fecha de Creación</th>
@@ -19,10 +20,10 @@
             <td>{{ orden.estado }}</td>
             <td>${{ orden.montoTotal }}</td>
             <td>
-              <button class="btn btn-sm btn-primary" (click)="orden.expandir = !orden.expandir">Ver Productos</button>
-              <button *ngIf="orden.estado !== 'PAGADO'" class="btn btn-sm btn-danger" (click)="eliminarOrden(orden.id)">Eliminar Orden</button>
-              <button *ngIf="orden.estado !== 'PAGADO'" class="btn btn-sm btn-success" (click)="mostrarFormularioPago(orden.id, orden.montoTotal)">Realizar Pago</button>
-              <button *ngIf="orden.estado === 'PAGADO'" class="btn btn-sm btn-info" (click)="descargarComprobante(orden.id)">Descargar Comprobante</button>
+              <button class="btn-ver-productos" (click)="orden.expandir = !orden.expandir"><i class="bi bi-eye mx-2"></i>Ver Productos</button>
+              <button *ngIf="orden.estado !== 'PAGADO'" class="btn-eliminar-orden" (click)="eliminarOrden(orden.id)"><i class="bi bi-trash mx-2"></i>Eliminar Orden</button>
+              <button *ngIf="orden.estado !== 'PAGADO'" class="btn-realizar-pago" (click)="mostrarFormularioPago(orden.id, orden.montoTotal)"><i class="bi bi-credit-card mx-2"></i>Realizar Pago</button>
+              <button *ngIf="orden.estado === 'PAGADO'" class="btn-descargar-comprobante" (click)="descargarComprobante(orden.id)"><i class="bi bi-download mx-2"></i>Descargar Comprobante</button>
             </td>
           </tr>
           <tr *ngIf="orden.expandir">
@@ -30,9 +31,18 @@
               <ul class="list-group">
                 <h5>Productos en la Orden {{ i + 1 }}</h5>
                 <li class="list-group-item" *ngFor="let producto of orden.productos">
-                  <div><strong>Nombre:</strong> {{ producto.nombre }}</div>
-                  <div><strong>Precio:</strong> ${{ producto.precio }}</div>
-                  <button *ngIf="orden.estado !== 'PAGADO'" class="btn btn-sm btn-danger" (click)="removerProductoDeLaOrden(orden.id, producto.id)">Eliminar</button>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex">
+                      <img [src]="producto.imagen" alt="Imagen del producto" class="img-thumbnail">
+                      <div class="ms-2">
+                        <div class="info-name">{{ producto.nombre }}</div>
+                        <div class="precio-info">Precio: ${{ producto.precio }}</div>
+                      </div>
+                    </div>
+                    <button *ngIf="orden.estado !== 'PAGADO'" class="btn-eliminar" (click)="removerProductoDeLaOrden(orden.id, producto.id)">
+                      <i class="bi bi-trash mx-2"></i>
+                    </button>
+                  </div>
                 </li>
               </ul>
             </td>
@@ -42,7 +52,6 @@
     </table>
   </div>
 </div>
-
 
 <!-- Modal para pago -->
 <div class="modal" tabindex="-1" role="dialog" id="pagoModal">
