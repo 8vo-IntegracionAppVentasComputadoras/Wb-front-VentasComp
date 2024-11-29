@@ -1,41 +1,40 @@
 <div *ngIf="producto; else loading" class="container">
-  <button class="btn btn-secondary mb-3" (click)="volverAtras()">
+  <button class="volver-button mb-3" (click)="volverAtras()">
     <i class="fas fa-arrow-left"></i> Volver
   </button>
   <div class="title-container text-center mb-4">
-    <h2 class="main-title">
-      <i class="bi bi-laptop"></i> <span class="product-name">{{ producto.nombre }}</span>
-    </h2>
-    <p class="subtitle">Encuentra la mejor computadora para tus necesidades</p>
+
   </div>
   <div class="row">
     <div class="col-lg-6 mb-3">
       <div class="image-container">
         <img [src]="limpiarBase64(producto.imagen)" alt="Imagen del Producto">
       </div>
-
-
     </div>
     <div class="col-lg-6">
       <div class="product-details">
+        <h2 class="fs-2 fw-bold mb-2">{{producto.nombre}}</h2>
+        <p class="mb-4 fs-6">Encuentra la mejor computadora para tus necesidades</p>
+        <p class="fs-2 fw-bold mb-4">${{ producto.precio }}</p>
+        <p class="stock mb-1">En stock ({{ producto.stock }} unidades)</p>
+        <p class="text-stock">Precio incluye IGV</p>
 
-        <p class="price"><strong>Precio:</strong> ${{ producto.precio }}</p>
-        <p class="stock"><strong>Stock:</strong> {{ producto.stock }}</p>
-        <p class="description"><strong>Descripción:</strong> {{ producto.descripcion }}</p>
-        <button class="btn btn-primary mt-3" (click)="agregarAlCarrito(producto.id!)">Añadir al Carrito</button>
+        <p class="fs-5 fw-bold">Descripción</p>
+        <p class="description">{{ producto.descripcion }}</p>
+        <button class="btn-cart-product-details" (click)="agregarAlCarrito(producto.id!)"> <i class="bi bi-cart fs-5 icon-cart"></i>Añadir al Carrito</button>
       </div>
     </div>
   </div>
   <div class="row mt-4">
     <div class="col">
-      <h4>Comentarios:</h4>
+      <h4 class="fs-4 fw-bold">Comentarios</h4>
       <div class="card mb-4">
         <div class="card-body">
           <div class="form-group">
-            <label for="nuevoComentario">Añadir comentario:</label>
-            <textarea id="nuevoComentario" [(ngModel)]="nuevoComentario" class="form-control" name="nuevo-comentario"></textarea>
+
+            <textarea id="nuevoComentario" [(ngModel)]="nuevoComentario" class="form-control" name="nuevo-comentario" placeholder="Escribe tu comentario"></textarea>
           </div>
-          <button (click)="agregarComentario()" class="btn btn-primary mt-2">Agregar</button>
+          <button (click)="agregarComentario()" class="btn-agregar-comentario">Agregar</button>
         </div>
       </div>
       <ul class="list-unstyled">
@@ -43,16 +42,16 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between">
-                <p class="card-text small text-muted">{{ comentario.nombreUsuario }}</p>
+                <p class="card-text fs-6 fw-bold">{{ comentario.nombreUsuario }}</p>
                 <p class="card-text small text-muted">{{ formatearFecha(comentario.fechaCreacion!) }}</p>
               </div>
               <p *ngIf="!editandoComentario || editandoComentario.id !== comentario.id" class="card-text">{{ comentario.contenido }}</p>
               <textarea *ngIf="editandoComentario && editandoComentario.id === comentario.id" [(ngModel)]="editandoComentario.contenido" class="form-control"></textarea>
               <div class="d-flex justify-content-end mt-2">
-                <button *ngIf="isOwner(comentario.usuarioId!)" (click)="editarComentario(comentario)" class="btn btn-link text-primary p-0 me-2">
-                  <i class="fas fa-edit"></i>
+                <button *ngIf="isOwner(comentario.usuarioId!)" (click)="editarComentario(comentario)" class="btn p-0 me-2 fs-6 mx-6">
+                  <i class="bi bi-pencil-square"></i>
                 </button>
-                <button *ngIf="isOwner(comentario.usuarioId!)" (click)="confirmarEliminarComentario(comentario.id!)" class="btn btn-link text-danger p-0">
+                <button *ngIf="isOwner(comentario.usuarioId!)" (click)="confirmarEliminarComentario(comentario.id!)" class="btn fs-6 p-0">
                   <i class="fas fa-trash"></i>
                 </button>
               </div>
