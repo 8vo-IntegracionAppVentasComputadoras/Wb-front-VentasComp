@@ -1,6 +1,61 @@
+/* Estilos para el slider y testimonios */
 .carousel-item img {
-  object-fit: cover;
-  height: 50vh;
+  object-fit: cover; /* Ajusta las imágenes al contenedor */
+  width: 250px;
+  height: 250px; /* Define una altura fija para el slider */
+}
+
+.carousel-item {
+  height: 100%; /* Ajusta la altura de cada ítem del carrusel */
+}
+
+/* Contenedor del Slider */
+.slider-container {
+  background-color: #ffffff; /* Fondo blanco para el slider */
+  border-radius: 10px; /* Bordes redondeados */
+  width: 55%; /* Ancho del contenedor del slider */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Contenedor de texto en el slider */
+.slider-text-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px; /* Ancho máximo del contenedor */
+  margin: 0 auto; /* Centra el contenido */
+}
+
+/* Wrapper del slider */
+.slider-wrapper {
+  background-color: #007bff; /* Fondo azul */
+  padding: 40px 0;
+  margin-top: 50px;
+  margin-right: 212px;
+  margin-left: 212px;
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+/* Contenedor de texto dentro del slider */
+.text-container {
+  width: 40%; /* Ancho del contenedor de texto */
+  padding: 20px;
+  color: #fff; /* Texto blanco */
+}
+
+.text-container p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.text-container h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+/* Carrusel */
+.carousel-inner {
+  height: 100%;
 }
 
 .carousel-caption {
@@ -11,24 +66,67 @@
   text-align: center;
 }
 
-.content {
-  backdrop-filter: blur(10px);
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 2rem;
+.carousel-indicators button {
+  background-color: rgb(0, 0, 0);
+}
+
+.carousel-indicators .active {
+  background-color: black;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: rgb(214, 214, 214);
+
+}
+
+
+/* Estilo de los testimonios */
+.testimonial-card {
+  background-color: #ffffff;
+  border: none;
   border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  padding: 20px;
+  text-align: center; /* Centra el contenido */
 }
 
-h1.display-4 {
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1.2;
+.testimonial-text {
+  font-size: 1rem;
+  color: #555;
+  font-style: italic;
 }
 
+.blockquote-footer {
+  font-size: 0.9rem;
+  color: #020202;
+  margin-top: 10px;
+}
+
+/* Estilos generales */
+#testimonials {
+  background-color: #f8f9fa;
+}
+
+#testimonials h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #343a40;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Botones */
 .btn-primary {
   background-color: #007bff;
   border-color: #007bff;
   transition: background-color 0.3s, transform 0.3s;
+}
+
+.custom-font {
+  font-size: 15px; /* Tamaño en píxeles */
+  font-weight: 600;
+  margin-top: 4px; /* Negrita */
 }
 
 .btn-primary:hover {
@@ -36,10 +134,75 @@ h1.display-4 {
   transform: translateY(-2px);
 }
 
-section {
-  padding: 60px 0;
+/* Footer */
+footer {
+  background-color: #699acc;
+  color: rgb(22, 21, 21);
+  padding: 20px 0;
 }
 
+footer a {
+  color: rgb(12, 12, 12);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Diseño responsive para móviles */
+@media (max-width: 768px) {
+  .slider-text-container {
+    flex-direction: column; /* Cambia a columna en pantallas más pequeñas */
+    text-align: center;
+  }
+
+  .slider-container {
+    width: 100%; /* El slider ocupa todo el ancho */
+  }
+
+  .text-container {
+    width: 100%; /* El texto ocupa todo el ancho */
+    margin-bottom: 20px; /* Espaciado abajo */
+  }
+
+  .carousel-item img {
+    height: 250px; /* Ajusta la altura en dispositivos más pequeños */
+  }
+
+  .testimonial-text {
+    font-size: 1rem;
+  }
+
+  .blockquote-footer {
+    font-size: 0.8rem;
+  }
+}
+
+/* Testimonios con imagen circular y nombre */
+/* Estilos de la imagen en los testimonios */
+.testimonial-img {
+  width: 200px; /* Reduce el tamaño de la imagen */
+  height: 200px; /* Mantiene la imagen cuadrada */
+  object-fit: cover; /* Asegura que la imagen se recorte adecuadamente */
+  border-radius: 50%; /* Hace la imagen circular */
+  margin-bottom: 15px; /* Ajusta el espaciado */
+}
+
+.testimonial-name {
+  font-size: 1rem; /* Ajusta el tamaño del nombre */
+  font-weight: bold;
+  color: #007bff;
+  margin-bottom: 8px;
+}
+
+.testimonial-text {
+  font-size: 0.9rem; /* Ajusta el tamaño del texto */
+  color: #555;
+  font-style: italic;
+}
+
+/* Sombra de las tarjetas */
 .card {
   transition: transform 0.3s, box-shadow 0.3s;
   border: none;
@@ -57,6 +220,7 @@ section {
   border-top-right-radius: 10px;
 }
 
+/* Caja de características */
 .feature-box {
   transition: transform 0.3s, box-shadow 0.3s;
   padding: 20px;
@@ -75,69 +239,10 @@ section {
   font-size: 3rem;
 }
 
-#testimonials {
-  background-color: #f8f9fa;
-}
-
-#testimonials h2 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #343a40;
-}
-
-.testimonial-card {
-  background-color: #ffffff;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-10px);
-}
-
-.testimonial-text {
-  font-size: 1.1rem;
-  color: #555;
-  font-style: italic;
-}
-
-.blockquote-footer {
-  font-size: 0.9rem;
-  color: #020202;
-  margin-top: 10px;
-}
-
-@media (max-width: 768px) {
-  #testimonials h2 {
-    font-size: 2rem;
-  }
-
-  .testimonial-text {
-    font-size: 1rem;
-  }
-
-  .blockquote-footer {
-    font-size: 0.8rem;
-  }
-}
-
-footer {
-  background-color: #699acc;
-  color: rgb(22, 21, 21);
-  padding: 20px 0;
-}
-
-footer a {
-  color: rgb(12, 12, 12);
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
 html {
   scroll-behavior: smooth;
+}
+
+section {
+  padding: 60px 0;
 }

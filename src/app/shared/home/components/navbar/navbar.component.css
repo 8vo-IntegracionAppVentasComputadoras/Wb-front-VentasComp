@@ -1,7 +1,23 @@
+/* Estilos del botón de "Ingresa aquí" */
+.btn-login{
+  background-color: #007bff; /* Color de fondo azul */
+  color: white; /* Color del texto en blanco */
+  border: none; /* Eliminar el borde */
+  font-weight: semibold;
+  padding: 10px;
+  font-size: 15px; /* Texto en negrita */
+  transition: background-color 0.3s ease; /* Transición suave para el hover */
+}
+
+.btn-login:hover {
+  background-color: #0056b3; /* Azul más oscuro al hacer hover */
+  color: white; /* Mantener el texto blanco */
+}
+
 
 .mat-toolbar {
-  background-color: var(--color-primary); /* Fondo blanco */
-  color: var(--color-text-dark); /* Texto oscuro */
+  background-color: white !important; /* Fondo blanco */
+  color: black; /* Texto negro */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,41 +35,76 @@
   flex: 1;
 }
 
-.nav-links button {
-  font-size: 1rem;
-  color: var(--color-text-dark);
+/* Estilos de los botones del navbar */
+.navbar-nav .nav-item .nav-link {
+  font-size: 0.875rem; /* Reducir el tamaño de la fuente */
+  color: black !important; /* Asegura que el texto sea negro */
+  background-color: white; /* Fondo blanco */
   margin: 0 0.5rem;
+  font-weight: bold; /* Texto en negrita */
+  border: 1px solid transparent; /* Evitar bordes extraños */
+  padding: 0.5rem 1rem; /* Espaciado dentro de los botones */
+  text-transform: capitalize; /* Opcional: para poner el texto con la primera letra en mayúscula */
+  transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease; /* Transición suave para el hover */
+  border-radius: 20px; /* Bordes redondeados en los botones */
 }
 
-.nav-links button:hover {
-  color: var(--color-hover); /* Azul en hover */
-  background-color: transparent;
+/* Efecto hover en los botones del navbar */
+.navbar-nav .nav-item .nav-link:hover {
+  background-color: #f0f0f0; /* Fondo gris claro al hacer hover */
+  color: black !important; /* Mantener el texto negro */
+  border-radius: 10px; /* Mantener los bordes redondeados en el hover */
 }
 
-.menu-button {
-  display: none;
+/* Efecto de enfoque (focus) en los botones */
+.navbar-nav .nav-item .nav-link:focus {
+  background-color: #f0f0f0; /* Fondo gris claro al estar en foco */
+  color: black !important; /* Mantener el texto negro */
+  border-radius: 20px; /* Mantener los bordes redondeados en el enfoque */
 }
 
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-
-  .menu-button {
-    display: inline-block;
-  }
+/* Estilos del botón de login (btn-outline-light) */
+.btn-outline-light {
+  background-color: white;
+  color: black !important; /* Asegura que el texto sea negro */
+  border: 1px solid #ccc; /* Borde gris claro */
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-button[mat-raised-button] {
-  border-radius: 20px; /* Botones redondeados */
-  text-transform: capitalize;
+.btn-outline-light:hover {
+  background-color: #f0f0f0; /* Fondo gris claro al hacer hover */
+  color: black !important; /* Mantener el texto negro */
 }
 
-button[mat-raised-button][color="primary"] {
-  background-color: var(--color-hover); /* Azul para el botón de ingreso */
-  color: white;
+/* Toggler (menú en pantallas pequeñas) */
+.navbar-toggler {
+  background-color: white; /* Fondo blanco para el botón de menú */
+  color: black !important; /* Asegura que el texto sea negro */
+  border: 1px solid #ccc; /* Borde gris claro */
 }
 
-button[mat-raised-button][color="primary"]:hover {
-  background-color: #0056b3; /* Azul más oscuro en hover */
+.navbar-toggler:hover {
+  background-color: #f0f0f0; /* Fondo gris claro al hacer hover */
+  color: black !important; /* Mantener el texto negro */
+}
+
+.navbar-toggler-icon {
+  color: black !important; /* Asegura que el icono sea negro */
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-item {
+  margin: 0 1rem; /* Espaciado entre los botones */
+}
+
+.navbar {
+  background-color: white !important; /* Fondo blanco */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }

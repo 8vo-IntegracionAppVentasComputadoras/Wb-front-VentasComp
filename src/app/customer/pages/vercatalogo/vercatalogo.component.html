@@ -1,7 +1,7 @@
 <div class="container mt-2">
   <div class="title-container text-center mb-4">
-    <h2 class="main-title">
-      <i class="bi bi-laptop"></i> Catálogo
+    <h2 class="fs-1 fw-bold mt-4 mb-2">
+      <i class="bi bi-laptop"></i> Catálogo de Productos
     </h2>
     <p class="subtitle">Encuentra la mejor computadora para tus necesidades</p>
   </div>
@@ -10,7 +10,7 @@
     <div class="d-flex justify-content-between mb-4">
       <input type="text" [(ngModel)]="searchQuery" class="form-control search-input" placeholder="Buscar productos..."
         (input)="onSearch()">
-      <button class="btn btn-primary ms-3" (click)="mostrarFavoritos()">
+      <button class="btn btn-primary ms-3 fw-semibold" (click)="mostrarFavoritos()">
         {{ mostrandoFavoritos ? 'Mostrar Todo' : 'Ver Favoritos' }}
       </button>
     </div>
@@ -18,25 +18,26 @@
       <div *ngFor="let producto of filteredProductos" class="col-md-4">
         <div class="card h-100 product-card" (click)="verDetalles(producto.id!)">
           <div class="position-relative">
-
+            <!-- Contenedor de imagen -->
             <div class="img-container">
               <img [src]="limpiarBase64(producto.imagen)" alt="Imagen del Producto">
             </div>
-
-
-            <i *ngIf="!mostrandoFavoritos" class="fa fa-star position-absolute top-0 end-0 m-2 text-warning"
-              (click)="agregarAFavoritos(producto.id!); $event.stopPropagation()" style="cursor: pointer;"></i>
-            <i *ngIf="mostrandoFavoritos" class="fa fa-trash position-absolute top-0 end-0 m-2 text-danger"
-              (click)="eliminarDeFavoritos(producto.id!); $event.stopPropagation()"
-              style="cursor: pointer; right: 30px;"></i>
           </div>
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">{{ producto.nombre }}</h5>
+
+          <!-- Contenedor del cuerpo del card con fondo diferente -->
+          <div class="card-body custom-card-body d-flex flex-column">
+            <h5 class="card-title fw-semibold fs-6">{{ producto.nombre }}</h5>
             <p class="card-text">{{ producto.descripcion }}</p>
-            <p class="card-text"><small class="text-muted">Precio: ${{ producto.precio }}</small></p>
-            <div class="mt-auto d-flex justify-content-between">
-              <button *ngIf="producto.id != null" class="btn custom-btn-primary"
-                (click)="agregarAlCarrito(producto.id!); $event.stopPropagation()">Añadir al Carrito</button>
+            <p class="card-text fw-bold fs-5">${{ producto.precio }}</p>
+
+            <!-- Contenedor para estrella y botón -->
+            <div class="mt-auto d-flex justify-content-between align-items-center">
+              <button (click)="agregarAFavoritos(producto.id!); $event.stopPropagation()" class="btn-favorite">
+                <i *ngIf="!mostrandoFavoritos" class="fa fa-star text-warning"></i>
+              </button>
+
+              <button *ngIf="producto.id != null" class="custom-btn-cart"
+                (click)="agregarAlCarrito(producto.id!); $event.stopPropagation()"> <i class="bi bi-cart fs-5"></i> Añadir al Carrito</button>
             </div>
           </div>
         </div>

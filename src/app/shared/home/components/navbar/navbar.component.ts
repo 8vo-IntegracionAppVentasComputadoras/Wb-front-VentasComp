@@ -62,7 +62,16 @@ export class NavbarComponent implements OnInit {
     }, 0);
   }
 
+  goHome(){
+
+    if(this.isUser)
+      this.router.navigateByUrl('user/ver-catalogo')
+      return
+    this.router.navigateByUrl('home')
+  }
+
   navigateAndScroll(section: string): void {
+
     if (this.router.url === '/home') {
       this.scrollToSection(section);
     } else {

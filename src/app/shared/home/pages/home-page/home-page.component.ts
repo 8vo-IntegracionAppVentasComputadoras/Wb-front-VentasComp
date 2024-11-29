@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'shared-home',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent {
+
+  private readonly router = inject(Router)
   productos = [
     {
       nombre: 'Laptop Gamer',
@@ -56,5 +59,9 @@ export class HomePageComponent {
     // Implementar lógica de suscripción aquí
     console.log('Usuario suscrito al boletín');
     alert('¡Gracias por suscribirse a nuestro boletín!');
+  }
+
+  gotoLogin(){
+    this.router.navigateByUrl('auth/login-registro')
   }
 }

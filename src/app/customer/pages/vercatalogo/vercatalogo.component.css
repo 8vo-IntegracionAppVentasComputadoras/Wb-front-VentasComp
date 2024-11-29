@@ -1,32 +1,4 @@
-/* Estilos personalizados para la barra lateral y los sliders */
-.sidebar {
-  background-color: #f8f9fa;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.slider-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.slider {
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.slider-large {
-  height: 1.5rem; /* Hacer el slider más grande */
-}
-
-.slider-container nouislider {
-  width: 80%;
-  margin-bottom: 20px;
-}
-
+/* Estilos generales para la interfaz */
 .container {
   padding: 0 15px;
 }
@@ -36,6 +8,7 @@
   border-radius: 0.25rem;
 }
 
+/* Tarjeta de producto */
 .product-card {
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   padding: 15px;
@@ -48,49 +21,79 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+/* Imagen del producto */
 .card-img-top {
   height: 150px;
   object-fit: cover;
   border-radius: 0.5rem 0.5rem 0 0;
 }
 
-.card-body {
-  padding: 10px;
+/* Contenedor de la imagen */
+.img-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.btn-primary, .btn-secondary {
-  padding: 0.375rem 0.75rem;
-  font-size: 0.875rem;
-  border-radius: 0.25rem;
+/* Estilo para el cuerpo del card con fondo distinto */
+.custom-card-body {
+  background-color: #f3f3f3;
+  padding: 15px;
+  border-radius: 0 0 0.5rem 0.5rem; /* Bordes redondeados en la parte inferior */
+  border-top: 1px solid #e0e0e0; /* Línea de separación con la imagen */
 }
 
-.btn-primary {
-  background-color: #007bff;
+/* Estilo para el contenedor estrella y botón */
+.card-body .d-flex {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+/* Botón Añadir al carrito */
+.custom-btn-cart {
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  padding: 6px;
+}
+
+/* Estilos del botón de favoritos */
+.btn-favorite {
+  display: flex;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+  padding: 0.5rem; /* Espaciado alrededor de la estrella */
   border: none;
-  transition: background-color 0.3s ease;
+  background-color: white; /* Sin fondo para que se vea limpio */
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+  width: 40px; /* Puedes ajustar el tamaño del botón */
+  height: 40px; /* Igual con la altura */
+  border-radius: 50%; /* Hace el botón circular */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
-.btn-primary:hover {
-  background-color: #0056b3;
+.btn-favorite:hover {
+  transform: scale(1.1); /* Efecto de hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra más fuerte al hacer hover */
 }
 
-.btn-secondary {
-  background-color: #6c757d;
-  border: none;
-  transition: background-color 0.3s ease;
+.btn-favorite .fa-star {
+  font-size: 1.25rem; /* Tamaño de la estrella */
+  transition: color 0.3s ease;
 }
 
-.btn-secondary:hover {
-  background-color: #545b62;
+.btn-favorite:hover .fa-star {
+  color: #ffcc00; /* Cambia el color de la estrella al hacer hover */
 }
 
-.text-center p {
-  font-size: 16px;
-  color: #6c757d;
-}
-
+/* Estilo para el título y subtítulo */
 .title-container {
   text-align: center;
   margin-bottom: 20px;
@@ -118,44 +121,43 @@
   font-style: italic;
 }
 
-.custom-btn-primary {
+/* Estilos del input de búsqueda */
+.search-input {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+}
+
+/* Estilo para el botón de "Ver Favoritos" */
+.btn-primary {
   background-color: #007bff;
-  color: #fff;
+  color: white;
   border: none;
   transition: background-color 0.3s ease;
 }
 
-.custom-btn-primary:hover {
+.btn-primary:hover {
   background-color: #0056b3;
 }
 
-.custom-btn-secondary {
-  background-color: #6c757d;
-  color: #fff;
-  border: none;
-  transition: background-color 0.3s ease;
+/* Estilo para el noData */
+.text-center p {
+  font-size: 16px;
+  color: #6c757d;
 }
 
-.custom-btn-secondary:hover {
-  background-color: #545b62;
+/* Estilos para cuando no hay productos */
+#noData {
+  display: none;
 }
 
-.custom-btn-primary, .custom-btn-secondary {
-  padding: 0.375rem 0.75rem;
-  font-size: 0.875rem;
-  border-radius: 0.25rem;
-}
-.img-container {
-  width: 100%; /* El contenedor ocupa todo el ancho disponible */
-  height: 200px; /* Altura fija para todas las imágenes */
-  overflow: hidden; /* Oculta cualquier parte de la imagen que exceda el contenedor */
-  display: flex;
-  justify-content: center;
-  align-items: center; /* Centra la imagen dentro del contenedor */
-}
+/* Responsive */
+@media (max-width: 768px) {
+  .card-img-top {
+    height: 200px;
+  }
 
-.img-container img {
-  width: 100%; /* Ajusta la imagen al ancho del contenedor */
-  height: 100%; /* Ajusta la imagen al alto del contenedor */
-  object-fit: contain; /* La imagen se adapta completamente al contenedor sin recortarse */
+  .custom-btn-primary {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
 }
