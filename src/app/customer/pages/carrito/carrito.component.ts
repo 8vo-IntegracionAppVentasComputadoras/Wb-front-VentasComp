@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { OrdenService } from 'src/app/services/orden.service';
 import Swal from 'sweetalert2';
@@ -21,7 +22,8 @@ export class CarritoPageComponent implements OnInit {
   montoTotal: number = 0;
   ordenIdParaPago: number | null = null;
 
-  constructor(private ordenService: OrdenService, private authService: AuthService) { }
+  constructor(private ordenService: OrdenService, private authService: AuthService, private router: Router) { }
+
 
   ngOnInit(): void {
     this.cargarOrdenes();
@@ -217,13 +219,9 @@ export class CarritoPageComponent implements OnInit {
   mostrarFormularioPago(ordenId: number, montoTotal: number): void {
     this.ordenIdParaPago = ordenId;
     this.montoTotal = montoTotal;
-    this.tarjetaCredito = '';
-    this.cvv = '';
-    this.fechaExpiracion = '';
-    const pagoModal = document.getElementById('pagoModal');
-    if (pagoModal) {
-      pagoModal.style.display = 'block';
-    }
+
+    // Redirigir a la página de Resumen Compra
+    this.router.navigate(['user/resumen-compra' , ordenId]);
   }
 
   descargarComprobante(ordenId: number): void {

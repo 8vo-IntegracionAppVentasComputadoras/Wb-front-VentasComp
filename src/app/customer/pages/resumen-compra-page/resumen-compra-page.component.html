@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <!-- Formulario de Pago -->
+    <div class="col-md-6 form-info">
+      <h3 class="fw-bold fs-5 mt-3">Datos de Tarjeta</h3>
+      <p>Ingresa los datos de tu tarjeta para realizar el pago</p>
+      <form>
+        <div class="form-group mb-4">
+          <label for="nombreApellido" class="fw-semibold mb-2">Nombre y Apellido</label>
+          <input  type="text" class="form-control" id="nombreApellido" [(ngModel)]="nombreApellido" [ngModelOptions]="{standalone: true}" >
+        </div>
+        <div class="form-group mb-4">
+          <label for="numeroTarjeta" class="fw-semibold mb-2">Número de Tarjeta</label>
+          <input type="text" class="form-control" id="numeroTarjeta" [(ngModel)]="numeroTarjeta" maxlength="19" (input)="validarNumeroTarjeta($event)" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group mb-4">
+          <label for="fechaExpiracion" class="fw-semibold mb-2">Fecha de Expiración</label>
+          <input type="text" class="form-control" id="fechaExpiracion" [(ngModel)]="fechaExpiracion" placeholder="MM/AA" (input)="validarFechaExpiracion($event)" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group mb-4">
+          <label for="codigoSeguridad" class="fw-semibold mb-2">Código de Seguridad (CVV)</label>
+          <input type="text" class="form-control" id="codigoSeguridad" [(ngModel)]="codigoSeguridad" (input)="validarCVV($event)" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group mb-4">
+          <label for="dni" class="fw-semibold mb-2">Número de DNI</label>
+          <input type="text" class="form-control" id="dni" [(ngModel)]="dni" [ngModelOptions]="{standalone: true}">
+        </div>
+        <button type="button" class="btn-pagar" [disabled]="!esFormularioValido()" (click)="realizarPago()">Pagar</button>
+      </form>
+
+        <p class="mt-4"><i class="bi bi-shield-check"></i> Tus datos están protegidos con encriptación de 256 bits</p>
+
+    </div>
+
+    <!-- Resumen de Compra -->
+    <div class="col-md-6">
+      <h3>Resumen de Compra</h3>
+      <ul>
+        <li *ngFor="let producto of productos">
+          <p>{{ producto.nombre }} - ${{ producto.precio }}</p>
+        </li>
+      </ul>
+      <h4 class="fw-bold">Total: ${{ montoTotal }}</h4>
+
+    </div>
+  </div>
+</div>

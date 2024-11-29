@@ -47,7 +47,7 @@ export class OrdenService {
     return this.http.post<any>(`${baserUrl}/pagos/realizar`, pago);
   }
 
-  
+
   descargarComprobantePorOrden(ordenId: number): Observable<Blob> {
     return this.http.get(`${baserUrl}/pagos/comprobante/orden/${ordenId}`, { responseType: 'blob' });
   }
